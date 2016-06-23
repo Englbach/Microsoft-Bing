@@ -408,6 +408,18 @@
     <AppxPackagedFile Include="C:\Users\lethi\documents\visual studio 2015\Projects\Bing Search API\Bing Search API\Assets\Musical Notes-24.png">
       <PackagePath>Assets\Musical Notes-24.png</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lethi\documents\visual studio 2015\Projects\Bing Search API\Bing Search API\Assets\Square310x310Logo.scale-100.png">
+      <PackagePath>Assets\Square310x310Logo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lethi\documents\visual studio 2015\Projects\Bing Search API\Bing Search API\Assets\Square310x310Logo.scale-200.png">
+      <PackagePath>Assets\Square310x310Logo.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lethi\documents\visual studio 2015\Projects\Bing Search API\Bing Search API\Assets\Square71x71Logo.scale-100.png">
+      <PackagePath>Assets\Square71x71Logo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lethi\documents\visual studio 2015\Projects\Bing Search API\Bing Search API\Assets\Test Tube-24.png">
       <PackagePath>Assets\Test Tube-24.png</PackagePath>
     </AppxPackagedFile>
@@ -449,6 +461,9 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lethi\documents\visual studio 2015\Projects\Bing Search API\Bing Search API\Assets\no_mans_sky_4-wallpaper-1920x1080.jpg">
       <PackagePath>Assets\no_mans_sky_4-wallpaper-1920x1080.jpg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lethi\documents\visual studio 2015\Projects\Bing Search API\Bing Search API\Assets\Square310x310Logo.scale-100.jpg">
+      <PackagePath>Assets\Square310x310Logo.scale-100.jpg</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lethi\documents\visual studio 2015\Projects\Bing Search API\Bing Search API\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
