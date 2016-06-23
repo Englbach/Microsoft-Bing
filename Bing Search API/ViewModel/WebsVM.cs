@@ -16,7 +16,7 @@ namespace Bing_Search_API.ViewModel
         DataVM dataVM = new DataVM();
         
 
-        public WebsVM(string _q, string _count, string _offset, string _mkt, string _safesearch)
+        public WebsVM(string _q, string _count, int _offset, string _mkt, string _safesearch)
         {
             this._q = _q;
             this._count = _count;
@@ -56,8 +56,9 @@ namespace Bing_Search_API.ViewModel
         private async void LaunchUri(string url)
         {
             var ishttp = url.Contains("http://");
+            var ishttps = url.Contains("https://");
             Uri uri;
-            if (ishttp==true)
+            if (ishttp==true || ishttps==true)
             {
                 uri = new Uri(url);
             }

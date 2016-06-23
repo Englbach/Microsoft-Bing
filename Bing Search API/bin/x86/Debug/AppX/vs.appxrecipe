@@ -22,13 +22,13 @@
     <AppXManifest Include="C:\Users\lethi\documents\visual studio 2015\Projects\Bing Search API\Bing Search API\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2016-06-22T04:24:55.177</Modified>
+      <Modified>2016-06-23T03:30:13.145</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\lethi\documents\visual studio 2015\Projects\Bing Search API\Bing Search API\bin\x86\Debug\Bing Search API.exe">
       <PackagePath>entrypoint\Bing Search API.exe</PackagePath>
-      <Modified>2016-06-22T04:24:53.963</Modified>
+      <Modified>2016-06-23T03:30:12.089</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lethi\.nuget\packages\Microsoft.ApplicationInsights\2.1.0\lib\uap10.0\Microsoft.ApplicationInsights.dll">
       <PackagePath>Microsoft.ApplicationInsights.dll</PackagePath>
@@ -606,7 +606,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lethi\documents\visual studio 2015\Projects\Bing Search API\Bing Search API\bin\x86\Debug\Bing Search API.xr.xml">
       <PackagePath>Bing Search API.xr.xml</PackagePath>
-      <Modified>2016-06-22T04:24:53.610</Modified>
+      <Modified>2016-06-23T03:15:47.110</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -614,11 +614,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lethi\documents\visual studio 2015\Projects\Bing Search API\Bing Search API\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2016-06-22T04:24:54.576</Modified>
+      <Modified>2016-06-23T03:28:48.648</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lethi\documents\visual studio 2015\Projects\Bing Search API\Bing Search API\bin\x86\Debug\Core\Bing Search API.exe">
       <PackagePath>Bing Search API.exe</PackagePath>
-      <Modified>2016-06-22T04:24:55.172</Modified>
+      <Modified>2016-06-23T03:30:13.140</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

@@ -22,20 +22,21 @@
                 <ColumnDefinition Width="130"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0" Orientation="Horizontal">
-                <AppBarButton x:ConnectionId='18' Name="btnBack" Icon="Back" Foreground="#CCCCCC" IsEnabled="False"                                                                  ></AppBarButton>
-                <AppBarButton x:ConnectionId='19' Name="btnNext" Icon="Forward"  Foreground="#CCCCCC" IsEnabled="False"                                                                  ></AppBarButton>
-                <AppBarButton x:ConnectionId='20' Name="btnRefresh" Icon="Refresh" Foreground="#CCCCCC" IsEnabled="False"                                                                        ></AppBarButton>
+                <AppBarButton x:ConnectionId='24' Name="btnBack" Icon="Back" IsEnabled="False"                      ></AppBarButton>
+                <AppBarButton x:ConnectionId='25' Name="btnNext" Icon="Forward" IsEnabled="False"                      ></AppBarButton>
+                <AppBarButton x:ConnectionId='26' Name="btnRefresh" Icon="Refresh" IsEnabled="False"                         ></AppBarButton>
             </StackPanel>
             
-            <Grid x:ConnectionId='15' Name="gridPanel" Grid.Column="1"                               >
-                <AutoSuggestBox x:ConnectionId='17' x:Name="SuggestBox"
+            <Grid x:ConnectionId='21' Name="gridPanel" Grid.Column="1"                               >
+                <AutoSuggestBox x:ConnectionId='23' x:Name="SuggestBox"
                                 Height="30"
                                 FontSize="12"
                                 VerticalAlignment="Center"
                                 HorizontalAlignment="Center"
                                 QueryIcon="Find"
                                 PlaceholderText="Search the web on Bing"
-                                                                          >
+                                                                          
+                                >
 
                 </AutoSuggestBox>
 
@@ -52,7 +53,7 @@
                     </AppBarButton.Flyout>
                 </AppBarButton>
 
-                <AppBarButton x:ConnectionId='16' Name="btnFavourite" Icon="Favorite">
+                <AppBarButton x:ConnectionId='22' Name="btnFavourite" Icon="Favorite">
                     <AppBarButton.Flyout>
                         <Flyout>
                             <userControl:FlyoutFavouriteControl></userControl:FlyoutFavouriteControl>
@@ -84,11 +85,11 @@
 
                         <PivotItem>
                             <PivotItem.Header>
-                                <TextBlock x:ConnectionId='13' x:Name="txtWebHeader" Text="Web" FontSize="15" Foreground="#666666" Margin="10,0,0,0"></TextBlock>
+                                <TextBlock x:ConnectionId='17' x:Name="txtWebHeader" Text="Web" FontSize="15" Foreground="#666666" Margin="10,0,0,0"></TextBlock>
                             </PivotItem.Header>
                             <PivotItem.Content>
                                 <Grid>
-                                    <ListView x:ConnectionId='14' x:Name="lstWeb" ItemsSource="{Binding WebsList}"  SelectedItem="{Binding WebsSelectedItems, Mode= TwoWay}" >
+                                    <ListView x:ConnectionId='18' x:Name="lstWeb" ItemsSource="{Binding WebsList}"  SelectedItem="{Binding WebsSelectedItems, Mode= TwoWay}"                                                >
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel HorizontalAlignment="Left" MaxWidth="600" Margin="10">
@@ -98,6 +99,12 @@
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
+                                        <ListView.Footer>
+                                            <Grid Width="600" HorizontalAlignment="Left">
+                                                <AppBarButton x:ConnectionId='19' Name="btnBackWeb" Icon="Back" Label="Back Page" HorizontalAlignment="Left"                          IsEnabled="False"                                                   ></AppBarButton>
+                                                <AppBarButton x:ConnectionId='20' Name="btnNextWeb" Icon="Forward" Label="Next Page" HorizontalAlignment="Right"                         ></AppBarButton>
+                                            </Grid>
+                                        </ListView.Footer>
                                     </ListView>
                                 </Grid>
                             </PivotItem.Content>
@@ -105,7 +112,7 @@
 
                         <PivotItem>
                             <PivotItem.Header>
-                                <TextBlock x:ConnectionId='8' Name="txtPhotosHeader" Text="Photos" FontSize="15" Foreground="#666666"></TextBlock>
+                                <TextBlock x:ConnectionId='12' Name="txtPhotosHeader" Text="Photos" FontSize="15" Foreground="#666666"></TextBlock>
                             </PivotItem.Header>
                             <PivotItem.Content>
                                 <Grid>
@@ -115,20 +122,25 @@
                                             <RowDefinition Height="80"></RowDefinition>
                                         </Grid.RowDefinitions>
                                         <Grid Grid.Row="0">
-                                            <Image x:ConnectionId='10' x:Name="imgImageView" Width="{Binding Width}" Height="{Binding Height}" Source="{Binding DisplayImage}"></Image>
+                                            <Image x:ConnectionId='14' x:Name="imgImageView" Width="{Binding Width}" Height="{Binding Height}" Source="{Binding DisplayImage}"></Image>
 
-                                            <Button x:ConnectionId='11' Name="btnBackPicture" BorderThickness="0" HorizontalAlignment="Left"                             >
+                                            <Button x:ConnectionId='15' Name="btnBackPicture" BorderThickness="0" HorizontalAlignment="Left"                             >
                                                 <SymbolIcon Symbol="Back" Foreground="White" Margin="10,5"></SymbolIcon>
                                             </Button>
 
-                                            <Button x:ConnectionId='12' Name="btnNextPicture" BorderThickness="0" HorizontalAlignment="Right"                             >
+                                            <Button x:ConnectionId='16' Name="btnNextPicture" BorderThickness="0" HorizontalAlignment="Right"                             >
                                                 <SymbolIcon Symbol="Forward" Foreground="White" Margin="10,5"></SymbolIcon>
                                             </Button>
 
                                            
                                         </Grid>
 
-                                        <GridView x:ConnectionId='9' x:Name="lstPhotos" Grid.Row="1" ScrollViewer.HorizontalScrollMode="Enabled" SelectedItem="{Binding PhotoSelectedItem, Mode=TwoWay}" ItemsSource="{Binding PhotosList}" Margin="5">
+                                        <GridView x:ConnectionId='13' x:Name="lstPhotos" Grid.Row="1" ScrollViewer.HorizontalScrollMode="Enabled" ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                                                  ScrollViewer.VerticalScrollMode="Disabled" 
+                                                  SelectedItem="{Binding PhotoSelectedItem, Mode=TwoWay}"
+                                                  ItemsSource="{Binding PhotosList}"
+                                                  Margin="5"
+                                                                                                >
                                             <GridView.ItemsPanel>
                                                 <ItemsPanelTemplate>
                                                     <ItemsWrapGrid Orientation="Vertical" MaximumRowsOrColumns="1"></ItemsWrapGrid>
@@ -152,11 +164,11 @@
 
                         <PivotItem>
                             <PivotItem.Header>
-                                <TextBlock x:ConnectionId='6' Name="txtVideoHeader" Text="Video" FontSize="15" Foreground="#666666"></TextBlock>
+                                <TextBlock x:ConnectionId='8' Name="txtVideoHeader" Text="Video" FontSize="15" Foreground="#666666"></TextBlock>
                             </PivotItem.Header>
                             <PivotItem.Content>
                                 <Grid>
-                                    <ListView x:ConnectionId='7' x:Name="lstVideo" ItemsSource="{Binding VideosList}">
+                                    <ListView x:ConnectionId='9' x:Name="lstVideo" ItemsSource="{Binding VideosList}" SelectedItem="{Binding VideoSelectedItem, Mode= TwoWay}"                                               >
                                         <ListView.ItemsPanel>
                                             <ItemsPanelTemplate>
                                                 <ItemsWrapGrid Orientation="Horizontal"></ItemsWrapGrid>
@@ -182,6 +194,12 @@
                                                 </Grid>
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
+                                        <ListView.Footer>
+                                            <Grid Width="600" HorizontalAlignment="Left">
+                                                <AppBarButton x:ConnectionId='10' Name="btnBackVideo" Icon="Back" Label="Back Page" HorizontalAlignment="Left"                            IsEnabled="False"                                                     ></AppBarButton>
+                                                <AppBarButton x:ConnectionId='11' Name="btnNextVideo" Icon="Forward" Label="Next Page" HorizontalAlignment="Right"                           ></AppBarButton>
+                                            </Grid>
+                                        </ListView.Footer>
                                     </ListView>
                                 </Grid>
                             </PivotItem.Content>
@@ -193,7 +211,7 @@
                             </PivotItem.Header>
                             <PivotItem.Content>
                                 <Grid>
-                                    <ListView x:ConnectionId='5' x:Name="lstNews" SelectedItem="{Binding NewsSelectedItem}" ItemsSource="{Binding newsList}">
+                                    <ListView x:ConnectionId='5' x:Name="lstNews" SelectedItem="{Binding NewsSelectedItem, Mode= TwoWay}" ItemsSource="{Binding newsList}"                                               >
 
 
                                         <ListView.ItemTemplate>
@@ -210,6 +228,12 @@
 
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
+                                        <ListView.Footer>
+                                            <Grid Width="600" HorizontalAlignment="Left">
+                                                <AppBarButton x:ConnectionId='6' Name="btnBackNews" Icon="Back" Label="Back Page" HorizontalAlignment="Left"                           IsEnabled="False"                                                    ></AppBarButton>
+                                                <AppBarButton x:ConnectionId='7' Name="btnNextNews" Icon="Forward" Label="Next Page" HorizontalAlignment="Right"                          ></AppBarButton>
+                                            </Grid>
+                                        </ListView.Footer>
                                     </ListView>
                                 </Grid>
                             </PivotItem.Content>

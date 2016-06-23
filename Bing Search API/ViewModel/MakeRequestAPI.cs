@@ -12,7 +12,7 @@ namespace Bing_Search_API.ViewModel
     {
         public class WebResponse
         {
-            public async Task<string> GetResponseAsync(string q, string count, string offset, string mkt, string safeSearch)
+            public async Task<string> GetResponseAsync(string q, string count, int offset, string mkt, string safeSearch)
             {
                 var client = new HttpClient();
                 var queryString = new Dictionary<string, string>();
@@ -23,16 +23,16 @@ namespace Bing_Search_API.ViewModel
                 //request parameters
                 queryString.Add("q", q);
                 queryString.Add("count", count);
-                queryString.Add("offset", offset);
+                queryString.Add("offset", offset.ToString());
                 queryString.Add("mkt", mkt);
                 queryString.Add("safesearch", safeSearch);
 
                 var uri = "https://bingapis.azure-api.net/api/v5/search/?"
-                    + "&q=" + queryString["q"]
+                    + "q=" + queryString["q"]
                     + "&count=" + queryString["count"]
-                    + "&offset" + queryString["offset"]
-                    + "&mkt" + queryString["mkt"]
-                    + "&safesearch" + queryString["safesearch"];
+                    + "&offset=" + queryString["offset"]
+                    + "&mkt=" + queryString["mkt"]
+                    + "&safesearch=" + queryString["safesearch"];
 
                 var response = await client.GetAsync(uri);
 
@@ -42,7 +42,7 @@ namespace Bing_Search_API.ViewModel
 
         public class NewsResponse 
         {
-            public async Task<string> GetResponseAsync(string q, string count, string offset, string mkt, string safeSearch)
+            public async Task<string> GetResponseAsync(string q, string count, int offset, string mkt, string safeSearch)
             {
                 var client = new HttpClient();
                 var queryString = new Dictionary<string, string>();
@@ -53,16 +53,16 @@ namespace Bing_Search_API.ViewModel
                 //request parameters
                 queryString.Add("q", q);
                 queryString.Add("count", count);
-                queryString.Add("offset", offset);
+                queryString.Add("offset", offset.ToString());
                 queryString.Add("mkt", mkt);
                 queryString.Add("safesearch", safeSearch);
 
                 var uri = "https://bingapis.azure-api.net/api/v5/news/search/?"
-                    + "&q=" + queryString["q"]
+                    + "q=" + queryString["q"]
                     + "&count=" + queryString["count"]
-                    + "&offset" + queryString["offset"]
-                    + "&mkt" + queryString["mkt"]
-                    + "&safesearch" + queryString["safesearch"];
+                    + "&offset=" + queryString["offset"]
+                    + "&mkt=" + queryString["mkt"]
+                    + "&safesearch=" + queryString["safesearch"];
 
                 var response = await client.GetAsync(uri);
 
@@ -72,7 +72,7 @@ namespace Bing_Search_API.ViewModel
 
         public class PhotosResponse
         {
-            public async Task<string> GetResponseAsync(string q, string count, string offset, string mkt, string safeSearch)
+            public async Task<string> GetResponseAsync(string q, string count, int offset, string mkt, string safeSearch)
             {
                 var client = new HttpClient();
                 var queryString = new Dictionary<string, string>();
@@ -83,7 +83,7 @@ namespace Bing_Search_API.ViewModel
                 //request parameters
                 queryString.Add("q", q);
                 queryString.Add("count", count);
-                queryString.Add("offset", offset);
+                queryString.Add("offset", offset.ToString());
                 queryString.Add("mkt", mkt);
                 queryString.Add("safesearch", safeSearch);
                 //...........................//
@@ -91,9 +91,9 @@ namespace Bing_Search_API.ViewModel
                 var uri = "https://bingapis.azure-api.net/api/v5/images/search/?&license=Public"
                     + "&q=" + queryString["q"]
                     + "&count=" + queryString["count"]
-                    + "&offset" + queryString["offset"]
-                    + "&mkt" + queryString["mkt"]
-                    + "&safesearch" + queryString["safesearch"];
+                    + "&offset=" + queryString["offset"]
+                    + "&mkt=" + queryString["mkt"]
+                    + "&safesearch=" + queryString["safesearch"];
                    
 
                 var response = await client.GetAsync(uri);
@@ -104,7 +104,7 @@ namespace Bing_Search_API.ViewModel
 
         public class VideosResponse
         {
-            public async Task<string> GetResponseAsync(string q, string count, string offset, string mkt, string safeSearch)
+            public async Task<string> GetResponseAsync(string q, string count, int offset, string mkt, string safeSearch)
             {
                 var client = new HttpClient();
                 var queryString = new Dictionary<string, string>();
@@ -115,7 +115,7 @@ namespace Bing_Search_API.ViewModel
                 //request parameters
                 queryString.Add("q", q);
                 queryString.Add("count", count);
-                queryString.Add("offset", offset);
+                queryString.Add("offset", offset.ToString());
                 queryString.Add("mkt", mkt);
                 queryString.Add("safesearch", safeSearch);
                 //...........................//
@@ -123,9 +123,9 @@ namespace Bing_Search_API.ViewModel
                 var uri = "https://bingapis.azure-api.net/api/v5/videos/search/?&pricing=Free"
                     + "&q=" + queryString["q"]
                     + "&count=" + queryString["count"]
-                    + "&offset" + queryString["offset"]
-                    + "&mkt" + queryString["mkt"]
-                    + "&safesearch" + queryString["safesearch"];
+                    + "&offset=" + queryString["offset"]
+                    + "&mkt=" + queryString["mkt"]
+                    + "&safesearch=" + queryString["safesearch"];
 
 
                 var response = await client.GetAsync(uri);

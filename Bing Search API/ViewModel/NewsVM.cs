@@ -1,5 +1,6 @@
 ﻿using Bing_Search_API.Model;
 using Newtonsoft.Json;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 
@@ -10,9 +11,9 @@ namespace Bing_Search_API.ViewModel
         ObservableCollection<News.Value> NewsCollection = new ObservableCollection<News.Value>();
         MakeRequestAPI.NewsResponse makeRequestAPI = new MakeRequestAPI.NewsResponse();
 
-        public event PropertyChangedEventHandler PropertyChanged;
+       
 
-        public NewsVM(string _q, string _count, string _offset, string _mkt, string _safesearch)
+        public NewsVM(string _q, string _count, int _offset, string _mkt, string _safesearch)
         {
             this._q = _q;
             this._count = _count;
@@ -46,6 +47,24 @@ namespace Bing_Search_API.ViewModel
             }
 
         }
+        // launch to browser
+        private async void LaunchUri(string url)
+        {
+            var ishttp = url.Contains("http://");
+            var ishttps = url.Contains("https://");
+            Uri uri;
+            if (ishttp == true || ishttps==true)
+            {
+                uri = new Uri(url);
+            }
+            else
+            {
+                uri = new Uri("http://" + url);
+            }
+
+
+            await Windows.System.Launcher.LaunchUriAsync(uri);
+        }
 
         private News.Value newsSelectedItem;
         public News.Value NewsSelectedItem
@@ -56,10 +75,12 @@ namespace Bing_Search_API.ViewModel
                 if(value!=newsSelectedItem)
                 {
                     newsSelectedItem = value;
-                    
+                    LaunchUri(newsSelectedItem.provider[0].name);
+                    newsSelectedItem = null;
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("NewsSelectedItem"));
                 }
             }
         }
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

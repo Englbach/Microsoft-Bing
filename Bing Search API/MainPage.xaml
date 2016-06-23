@@ -22,9 +22,9 @@
                 <ColumnDefinition Width="130"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0" Orientation="Horizontal">
-                <AppBarButton Name="btnBack" Icon="Back" Foreground="#CCCCCC" IsEnabled="False" Click="btnBack_Click" IsEnabledChanged="btnBack_IsEnabledChanged"></AppBarButton>
-                <AppBarButton Name="btnNext" Icon="Forward"  Foreground="#CCCCCC" IsEnabled="False" Click="btnNext_Click" IsEnabledChanged="btnNext_IsEnabledChanged"></AppBarButton>
-                <AppBarButton Name="btnRefresh" Icon="Refresh" Foreground="#CCCCCC" IsEnabled="False" Click="btnRefresh_Click" IsEnabledChanged="btnRefresh_IsEnabledChanged"></AppBarButton>
+                <AppBarButton Name="btnBack" Icon="Back" IsEnabled="False" Click="btnBack_Click"></AppBarButton>
+                <AppBarButton Name="btnNext" Icon="Forward" IsEnabled="False" Click="btnNext_Click"></AppBarButton>
+                <AppBarButton Name="btnRefresh" Icon="Refresh" IsEnabled="False" Click="btnRefresh_Click"></AppBarButton>
             </StackPanel>
             
             <Grid Name="gridPanel" Grid.Column="1" SizeChanged="Grid_SizeChanged">
@@ -35,7 +35,8 @@
                                 HorizontalAlignment="Center"
                                 QueryIcon="Find"
                                 PlaceholderText="Search the web on Bing"
-                                QuerySubmitted="SuggestBox_QuerySubmitted">
+                                QuerySubmitted="SuggestBox_QuerySubmitted"
+                                >
 
                 </AutoSuggestBox>
 
@@ -88,7 +89,7 @@
                             </PivotItem.Header>
                             <PivotItem.Content>
                                 <Grid>
-                                    <ListView x:Name="lstWeb" ItemsSource="{Binding WebsList}"  SelectedItem="{Binding WebsSelectedItems, Mode= TwoWay}" >
+                                    <ListView x:Name="lstWeb" ItemsSource="{Binding WebsList}"  SelectedItem="{Binding WebsSelectedItems, Mode= TwoWay}" DataContextChanged="lstWeb_DataContextChanged" >
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel HorizontalAlignment="Left" MaxWidth="600" Margin="10">
@@ -98,6 +99,12 @@
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
+                                        <ListView.Footer>
+                                            <Grid Width="600" HorizontalAlignment="Left">
+                                                <AppBarButton Name="btnBackWeb" Icon="Back" Label="Back Page" HorizontalAlignment="Left" Click="btnBackWeb_Click" IsEnabled="False" DataContextChanged="btnBackWeb_DataContextChanged"></AppBarButton>
+                                                <AppBarButton Name="btnNextWeb" Icon="Forward" Label="Next Page" HorizontalAlignment="Right" Click="btnNextWeb_Click"></AppBarButton>
+                                            </Grid>
+                                        </ListView.Footer>
                                     </ListView>
                                 </Grid>
                             </PivotItem.Content>
@@ -128,7 +135,12 @@
                                            
                                         </Grid>
 
-                                        <GridView x:Name="lstPhotos" Grid.Row="1" ScrollViewer.HorizontalScrollMode="Enabled" SelectedItem="{Binding PhotoSelectedItem, Mode=TwoWay}" ItemsSource="{Binding PhotosList}" Margin="5">
+                                        <GridView x:Name="lstPhotos" Grid.Row="1" ScrollViewer.HorizontalScrollMode="Enabled" ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                                                  ScrollViewer.VerticalScrollMode="Disabled" 
+                                                  SelectedItem="{Binding PhotoSelectedItem, Mode=TwoWay}"
+                                                  ItemsSource="{Binding PhotosList}"
+                                                  Margin="5"
+                                                  DataContextChanged="lstWeb_DataContextChanged">
                                             <GridView.ItemsPanel>
                                                 <ItemsPanelTemplate>
                                                     <ItemsWrapGrid Orientation="Vertical" MaximumRowsOrColumns="1"></ItemsWrapGrid>
@@ -156,7 +168,7 @@
                             </PivotItem.Header>
                             <PivotItem.Content>
                                 <Grid>
-                                    <ListView x:Name="lstVideo" ItemsSource="{Binding VideosList}">
+                                    <ListView x:Name="lstVideo" ItemsSource="{Binding VideosList}" SelectedItem="{Binding VideoSelectedItem, Mode= TwoWay}" DataContextChanged="lstWeb_DataContextChanged">
                                         <ListView.ItemsPanel>
                                             <ItemsPanelTemplate>
                                                 <ItemsWrapGrid Orientation="Horizontal"></ItemsWrapGrid>
@@ -182,6 +194,12 @@
                                                 </Grid>
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
+                                        <ListView.Footer>
+                                            <Grid Width="600" HorizontalAlignment="Left">
+                                                <AppBarButton Name="btnBackVideo" Icon="Back" Label="Back Page" HorizontalAlignment="Left" Click="btnBackVideo_Click" IsEnabled="False" DataContextChanged="btnBackVideo_DataContextChanged"></AppBarButton>
+                                                <AppBarButton Name="btnNextVideo" Icon="Forward" Label="Next Page" HorizontalAlignment="Right" Click="btnNextVideo_Click"></AppBarButton>
+                                            </Grid>
+                                        </ListView.Footer>
                                     </ListView>
                                 </Grid>
                             </PivotItem.Content>
@@ -193,7 +211,7 @@
                             </PivotItem.Header>
                             <PivotItem.Content>
                                 <Grid>
-                                    <ListView x:Name="lstNews" SelectedItem="{Binding NewsSelectedItem}" ItemsSource="{Binding newsList}">
+                                    <ListView x:Name="lstNews" SelectedItem="{Binding NewsSelectedItem, Mode= TwoWay}" ItemsSource="{Binding newsList}" DataContextChanged="lstWeb_DataContextChanged">
 
 
                                         <ListView.ItemTemplate>
@@ -210,6 +228,12 @@
 
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
+                                        <ListView.Footer>
+                                            <Grid Width="600" HorizontalAlignment="Left">
+                                                <AppBarButton Name="btnBackNews" Icon="Back" Label="Back Page" HorizontalAlignment="Left" Click="btnBackNews_Click" IsEnabled="False" DataContextChanged="btnBackNews_DataContextChanged"></AppBarButton>
+                                                <AppBarButton Name="btnNextNews" Icon="Forward" Label="Next Page" HorizontalAlignment="Right" Click="btnNextNews_Click"></AppBarButton>
+                                            </Grid>
+                                        </ListView.Footer>
                                     </ListView>
                                 </Grid>
                             </PivotItem.Content>

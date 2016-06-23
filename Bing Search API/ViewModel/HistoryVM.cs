@@ -32,12 +32,7 @@ namespace Bing_Search_API.ViewModel
             }
 
         }
-        HistoryBrowser historybrowser = new HistoryBrowser();
-        public async void GetDeleteData()
-        {
-            List<HistoryBrowser> historyList = await todoTable.Where(historybrowser => historybrowser.Title == "dfs").ToListAsync();
-            
-        }
+       
 
     }
 }

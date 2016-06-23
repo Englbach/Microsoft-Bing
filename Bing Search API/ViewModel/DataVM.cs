@@ -41,7 +41,7 @@ namespace Bing_Search_API.ViewModel
             {
                 
             }
-
+           
         }
 
 

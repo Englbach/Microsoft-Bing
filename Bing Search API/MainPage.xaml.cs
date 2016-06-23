@@ -20,6 +20,11 @@ namespace Bing_Search_API
 
         private List<string> arraySearch = new List<string>();
         int i;
+
+        int offset_web=0;
+        int offset_news=0;
+        int offset_video=0;
+
         public MainPage()
         {
             ApplicationViewTitleBar titleBar = ApplicationView.GetForCurrentView().TitleBar;
@@ -34,7 +39,11 @@ namespace Bing_Search_API
             SplitViewVM vmSplitView = new SplitViewVM(splitView);
             lstCategories.DataContext = vmSplitView;
 
-           
+            //Called SuggestBox_QuereySubmitted again
+            SuggestBox.Text = "Wellcome to Bing Search";
+
+            var args = new AutoSuggestBoxQuerySubmittedEventArgs();
+            SuggestBox_QuerySubmitted(SuggestBox, args);
         }
 
        
@@ -48,7 +57,6 @@ namespace Bing_Search_API
 
         private void SuggestBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
-            
             if(SuggestBox.Text!="")
             {
                 //checking arraySearch
@@ -56,35 +64,33 @@ namespace Bing_Search_API
                 {
                     arraySearch.Add(SuggestBox.Text.ToString());
                     i = arraySearch.Count - 1;
-                    btnBack.IsEnabled = true;
+                   
                 }
                
-                
-
                 // pivot is selected
 
                 if (privotContent.SelectedIndex==0)
                 {
                     lstWeb.DataContext = null;
-                    ViewModel.WebsVM vmWebs = new ViewModel.WebsVM(SuggestBox.Text, "10", "0", "en-us", "Moderate");
+                    ViewModel.WebsVM vmWebs = new ViewModel.WebsVM(SuggestBox.Text, "10", offset_web , "en-us", "Moderate");
                     lstWeb.DataContext = vmWebs;
                 }
                 else if(privotContent.SelectedIndex==1)
                 {
                     lstPhotos.DataContext = null;
-                    PhotosVM vmPhotos = new PhotosVM(SuggestBox.Text, "30", "0", "en-us", "Moderate", imgImageView);
+                    PhotosVM vmPhotos = new PhotosVM(SuggestBox.Text, "30", 0, "en-us", "Moderate", imgImageView);
                     lstPhotos.DataContext = vmPhotos;
                 }
                 else if(privotContent.SelectedIndex==2)
                 {
                     lstVideo.DataContext = null;
-                    VideosVM vmVideos = new VideosVM(SuggestBox.Text, "50", "0", "en-us", "Moderate");
+                    VideosVM vmVideos = new VideosVM(SuggestBox.Text, "50", offset_video, "en-us", "Moderate");
                     lstVideo.DataContext = vmVideos;
                 }
                 else if(privotContent.SelectedIndex==3)
                 {
                     lstNews.DataContext = null;
-                    NewsVM vmNews = new NewsVM(SuggestBox.Text, "10", "0", "en-us", "Moderate");
+                    NewsVM vmNews = new NewsVM(SuggestBox.Text, "10", offset_news, "en-us", "Moderate");
                     lstNews.DataContext = vmNews;
                 }
 
@@ -144,17 +150,11 @@ namespace Bing_Search_API
 
             if (arraySearch!=null)
             {
-                
-                
-                if(i>0)
+
+
+                if (i > 0)
                 {
                     i = i - 1;
-                    btnNext.IsEnabled = true;
-                    
-                }
-                else if(i<=0)
-                {
-                    btnBack.IsEnabled = false;
                 }
 
                 SuggestBox.Text = arraySearch[i];
@@ -171,16 +171,11 @@ namespace Bing_Search_API
 
             if (arraySearch!=null)
             {
-                if(i < arraySearch.Count-1)
+                if (i < arraySearch.Count - 1 && i >= 0)
                 {
                     i = i + 1;
-                   
                 }
-                else if(i>=arraySearch.Count - 1)
-                {
-                    btnNext.IsEnabled = false;
-                    
-                }
+                
                
                 SuggestBox.Text = arraySearch[i];
                 var args = new AutoSuggestBoxQuerySubmittedEventArgs();
@@ -189,29 +184,154 @@ namespace Bing_Search_API
             
         }
 
-        private void btnBack_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
+       
+
+        private void btnBackWeb_Click(object sender, RoutedEventArgs e)
         {
-            if(btnBack.IsEnabled==true)
-                btnBack.Foreground = new SolidColorBrush(Color.FromArgb(255, 33, 33, 33));
+            if (offset_web == 0)
+            {
+                return;
+            }
             else
-                btnBack.Foreground = new SolidColorBrush(Color.FromArgb(255, 204, 204, 204));
+                offset_web -= 10;
+
+            var args = new AutoSuggestBoxQuerySubmittedEventArgs();
+            SuggestBox_QuerySubmitted(SuggestBox, args);
         }
 
-        private void btnNext_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
+        private void btnNextWeb_Click(object sender, RoutedEventArgs e)
         {
-            if(btnNext.IsEnabled==true)
-                btnNext.Foreground = new SolidColorBrush(Color.FromArgb(255, 33, 33, 33));
+            if (offset_web >= 0)
+            {
+                offset_web += 10;
+            }
             else
-                btnNext.Foreground = new SolidColorBrush(Color.FromArgb(255, 204, 204, 204));
+                return;
 
+            //Called SuggestBox_QuereySubmitted again
+
+            var args = new AutoSuggestBoxQuerySubmittedEventArgs();
+            SuggestBox_QuerySubmitted(SuggestBox, args);
         }
 
-        private void btnRefresh_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
+        private void btnBackVideo_Click(object sender, RoutedEventArgs e)
         {
-            if(btnRefresh.IsEnabled==true)
-                btnRefresh.Foreground = new SolidColorBrush(Color.FromArgb(255, 33, 33, 33));
+            if (offset_video == 0)
+            {
+               
+                return;
+            }
             else
-                btnRefresh.Foreground= new SolidColorBrush(Color.FromArgb(255, 204, 204, 204));
+            {               
+                offset_video -= 10;
+            }
+                
+
+            //Called SuggestBox_QuereySubmitted again
+
+            var args = new AutoSuggestBoxQuerySubmittedEventArgs();
+            SuggestBox_QuerySubmitted(SuggestBox, args);
+        }
+
+        private void btnNextVideo_Click(object sender, RoutedEventArgs e)
+        {
+            if (offset_video >= 0)
+            {
+                offset_video += 10;
+            }
+            else
+                return;
+
+            //Called SuggestBox_QuereySubmitted again
+
+            var args = new AutoSuggestBoxQuerySubmittedEventArgs();
+            SuggestBox_QuerySubmitted(SuggestBox, args);
+        }
+
+        private void btnNextNews_Click(object sender, RoutedEventArgs e)
+        {
+            if (offset_news >= 0)
+            {
+                offset_news += 10;
+            }
+            else
+                return;
+
+            //Called SuggestBox_QuereySubmitted again
+
+            var args = new AutoSuggestBoxQuerySubmittedEventArgs();
+            SuggestBox_QuerySubmitted(SuggestBox, args);
+        }
+
+        private void btnBackNews_Click(object sender, RoutedEventArgs e)
+        {
+            if (offset_news == 0)
+            {
+                return;
+            }
+            else
+                offset_news -= 10;
+
+            //Called SuggestBox_QuereySubmitted again
+
+            var args = new AutoSuggestBoxQuerySubmittedEventArgs();
+            SuggestBox_QuerySubmitted(SuggestBox, args);
+        }
+
+        private void btnBackWeb_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
+        {
+            if (offset_web == 0)
+            {
+                btnBackWeb.IsEnabled = false;
+            }
+            else
+                btnBackWeb.IsEnabled = true;
+        }
+
+        private void btnBackVideo_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
+        {
+            if (offset_video == 0)
+            {
+                btnBackVideo.IsEnabled = false;
+            }
+            else
+                btnBackVideo.IsEnabled = true;
+        }
+
+        private void btnBackNews_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
+        {
+            if (offset_news == 0)
+            {
+                btnBackNews.IsEnabled = false;
+            }
+            else
+                btnBackNews.IsEnabled = true;
+        }
+
+       
+
+        private void lstWeb_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
+        {
+            if (i == 0 && i == arraySearch.Count - 1)
+            {
+                btnBack.IsEnabled = false;
+                btnNext.IsEnabled = false;
+            }
+            else if (i == 0 && i <= arraySearch.Count - 1)
+            {
+                btnBack.IsEnabled = false;
+                btnNext.IsEnabled = true;
+            }
+            else if (i >= 1 && i==arraySearch.Count-1)
+            {
+                btnBack.IsEnabled = true;
+                btnNext.IsEnabled = false;
+            }
+            else if(i>=1 && i <= arraySearch.Count-1)
+            {
+                btnBack.IsEnabled = true;
+                btnNext.IsEnabled = true;
+            }
         }
     }
 }
