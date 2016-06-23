@@ -69,7 +69,7 @@ namespace Bing_Search_API.ViewModel
             }
             else
             {
-                uri = new Uri("http://" + url);
+                uri = new Uri("https://" + url);
             }
 
 

@@ -59,7 +59,7 @@ namespace Bing_Search_API.ViewModel
             }
             else
             {
-                uri = new Uri("http://" + url);
+                uri = new Uri("https://" + url);
             }
 
 
@@ -75,7 +75,7 @@ namespace Bing_Search_API.ViewModel
                 if(value!=newsSelectedItem)
                 {
                     newsSelectedItem = value;
-                    LaunchUri(newsSelectedItem.provider[0].name);
+                    LaunchUri(newsSelectedItem.url);
                     newsSelectedItem = null;
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("NewsSelectedItem"));
                 }

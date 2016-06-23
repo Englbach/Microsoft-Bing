@@ -1,4 +1,5 @@
 ﻿using Bing_Search_API.Model;
+using Microsoft.WindowsAzure.MobileServices;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -25,7 +26,8 @@ namespace Bing_Search_API.ViewModel
         }
         public async void GetHistoryData()
         {
-            List<HistoryBrowser> historyList = await todoTable.ToListAsync();
+            IMobileServiceTableQuery<HistoryBrowser> query = todoTable.OrderByDescending(historyBrowser => historyBrowser.DateCreation);
+            List<HistoryBrowser> historyList = await query.ToListAsync();
             foreach (var item in historyList)
             {
                 historyCollection.Add(item);
